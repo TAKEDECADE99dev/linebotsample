@@ -10,9 +10,13 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
-# JSONファイル読み込み
-file = open('info.json', 'r')
-info = json.load(file)
+#環境変数取得
+# LINE Developersで設定されているアクセストークンとChannel Secretをを取得し、設定します。
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 @app.route("/")
 def hello_world():
