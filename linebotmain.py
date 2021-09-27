@@ -1,12 +1,17 @@
 from flask import Flask, request, abort
-from linebot import LineBotApi, WebhookHandler
+import os
 
+from linebot import (
+    LineBotApi, WebhookHandler
+)
 from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
+
+app = Flask(__name__)
 
 #環境変数取得
 # LINE Developersで設定されているアクセストークンとChannel Secretをを取得し、設定します。
